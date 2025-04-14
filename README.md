@@ -21,6 +21,10 @@ Access grafana at http://localhost:3000/
 
 Default username and password for grafana is `admin`. (See <https://grafana.com/docs/grafana/latest/setup-grafana/sign-in-to-grafana/>)
 
+## Sample application that writes to InfluxDB
+
+See <https://github.com/srgsanky/influx-db-demo-rust-client> for a demo application that writes to InfluxDB.
+
 ## Shutdown
 
 ```bash
