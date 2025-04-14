@@ -9,6 +9,6 @@ datasources:
     editable: true
     database: ${INFLUXDB_DATABASE}
     jsonData:
-      version: Flux
+      version: InfluxQL
       dbName: ${INFLUXDB_DATABASE}
       httpMode: POST
