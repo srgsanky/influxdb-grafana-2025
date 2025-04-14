@@ -14,6 +14,20 @@ docker compose up -d
 # Database is automatically created on container startup
 ```
 
+## Grafana
+
+Access grafana at http://localhost:3000/
+
+Default username and password for grafana is `admin`. (See <https://grafana.com/docs/grafana/latest/setup-grafana/sign-in-to-grafana/>)
+
+## Shutdown
+
+```bash
+docker compose down
+```
+
+## Troubleshooting
+
 Connect to the containers
 
 ```bash
@@ -24,15 +38,7 @@ docker exec -it grafana /bin/bash
 nc -vz influxdb 8181
 ```
 
-Default username and password for grafana is `admin`. (See <https://grafana.com/docs/grafana/latest/setup-grafana/sign-in-to-grafana/>)
-
-## Shutdown
-
-```bash
-docker compose down
-```
-
-## Check logs
+### Check logs
 
 ```bash
 docker compose logs
