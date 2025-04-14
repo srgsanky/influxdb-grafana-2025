@@ -1,5 +1,3 @@
-version: '3'
-
 # Define environment variables that can be used across services
 x-environment: &common-env
   INFLUXDB_DATABASE: ${INFLUXDB_DATABASE:-CityWeather}
@@ -18,6 +16,13 @@ services:
     environment:
       <<: *common-env
     entrypoint: ["/influxdb-init.sh"]
+    healthcheck:
+      # InfluxDB is considered healthy if it is up (listening on part 8181 and has the default database created)
+      test: ["CMD-SHELL", "nc -z localhost 8181 && influxdb3 show databases --format csv | grep -q ${INFLUXDB_DATABASE}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
 
   grafana:
     image: grafana/grafana:latest
@@ -25,7 +30,10 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - influxdb
+      influxdb:
+        # Don't just wait for influxdb to start, but wait for it to be healthy
+        # This prevents a race between grafana and the init script in the influxdb container both trying to create the same database.
+        condition: service_healthy
     volumes:
       # Mount configurations on datasources and dashboards
       - ./provisioning:/etc/grafana/provisioning

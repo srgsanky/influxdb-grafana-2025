@@ -5,6 +5,7 @@
 ```bash
 # Set required environment variables
 export PATH_IN_HOST_MACHINE=$HOME/Documents/influx-db-demo
+rm -rf ${PATH_IN_HOST_MACHINE}
 mkdir -p ${PATH_IN_HOST_MACHINE}
 
 # Set the database name (defaults to CityWeather if not specified)
