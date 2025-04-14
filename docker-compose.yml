@@ -1,5 +1,9 @@
 version: '3'
 
+# Define environment variables that can be used across services
+x-environment: &common-env
+  INFLUXDB_DATABASE: ${INFLUXDB_DATABASE:-CityWeather}
+
 services:
   influxdb:
     image: quay.io/influxdb/influxdb3-core:latest
@@ -8,6 +12,8 @@ services:
       - ${PATH_IN_HOST_MACHINE}:/influxdb-data
     ports:
       - "127.0.0.1:8181:8181"
+    environment:
+      <<: *common-env
     command: >
       serve
       --node-id beach_banana
@@ -22,3 +28,7 @@ services:
       - "3000:3000"
     depends_on:
       - influxdb
+    volumes:
+      - ./provisioning:/etc/grafana/provisioning
+    environment:
+      <<: *common-env

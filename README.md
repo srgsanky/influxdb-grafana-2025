@@ -3,10 +3,14 @@
 ## Startup
 
 ```bash
+# Set required environment variables
 export PATH_IN_HOST_MACHINE=$HOME/Documents/influx-db-demo
+# Set the database name (defaults to CityWeather if not specified)
+export INFLUXDB_DATABASE=CityWeather
+
 mkdir -p ${PATH_IN_HOST_MACHINE}
 docker compose up -d
-docker exec -it influxdb influxdb3 create database CityWeather
+docker exec -it influxdb influxdb3 create database ${INFLUXDB_DATABASE}
 ```
 
 Connect to the containers
@@ -34,4 +38,3 @@ docker compose logs
 docker compose logs -f influxdb
 docker compose logs -f grafana
 ```
-
