@@ -6,20 +6,18 @@ x-environment: &common-env
 
 services:
   influxdb:
-    image: quay.io/influxdb/influxdb3-core:latest
+    build:
+        context: .
+        dockerfile: Dockerfile
     container_name: influxdb
     volumes:
       - ${PATH_IN_HOST_MACHINE}:/influxdb-data
+      - ./influxdb-init.sh:/influxdb-init.sh
     ports:
       - "127.0.0.1:8181:8181"
     environment:
       <<: *common-env
-    command: >
-      serve
-      --node-id beach_banana
-      --object-store file
-      --data-dir /influxdb-data
-      --without-auth
+    entrypoint: ["/influxdb-init.sh"]
 
   grafana:
     image: grafana/grafana:latest
