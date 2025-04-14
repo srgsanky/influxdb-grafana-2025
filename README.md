@@ -50,3 +50,8 @@ docker compose logs
 docker compose logs -f influxdb
 docker compose logs -f grafana
 ```
+
+## References
+
+* InfluxDB docker setup <https://docs.influxdata.com/influxdb3/core/?t=Docker#install-and-startup>
+* InfluxDB CLI <https://docs.influxdata.com/influxdb3/core/reference/cli/influxdb3/>
