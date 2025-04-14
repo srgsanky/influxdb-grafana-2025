@@ -27,6 +27,9 @@ services:
     depends_on:
       - influxdb
     volumes:
+      # Mount configurations on datasources and dashboards
       - ./provisioning:/etc/grafana/provisioning
+      # Mount all dashboard jsons
+      - ./dashboards:/etc/dashboards/
     environment:
       <<: *common-env
