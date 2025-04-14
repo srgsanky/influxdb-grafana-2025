@@ -19,7 +19,7 @@ docker exec -it grafana /bin/bash
 nc -vz influxdb 8181
 ```
 
-Default username and password for grafana is `admin`.
+Default username and password for grafana is `admin`. (See <https://grafana.com/docs/grafana/latest/setup-grafana/sign-in-to-grafana/>)
 
 ## Shutdown
 
