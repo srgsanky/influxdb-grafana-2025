@@ -113,7 +113,7 @@
                     "resultFormat": "time_series"
                 }
             ],
-            "title": "Panel Title",
+            "title": "Temperature measurements",
             "type": "timeseries"
         }
     ],
